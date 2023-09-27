@@ -1,0 +1,36 @@
+{
+  "name": "cyantype",
+  "version": "1.0.0-alpha.1",
+  "description": "A simple lit element, that provides a 'textarea' that supports Markdown copy-paste",
+  "main": "lib/main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lit",
+    "lit-element",
+    "markdown",
+    "textarea",
+    "copy-paste"
+  ],
+  "author": "Ville Takanen",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "eslint": "^8.49.0",
+    "eslint-plugin-lit": "^1.6.1",
+    "eslint-plugin-lit-a11y": "^1.1.0-next.1",
+    "eslint-plugin-wc": "^1.3.2",
+    "sass": "^1.68.0",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9",
+    "vite-plugin-dts": "^3.5.3",
+    "vitest": "^0.34.4"
+  },
+  "dependencies": {
+    "lit": "^2.8.0"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "lit",
+    "lit-a11y"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:wc/recommended",
+    "plugin:lit/recommended",
+    "plugin:lit-a11y/recommended"
+  ],
+  "rules": {
+    "indent": [
+      "error",
+      2
+    ],
+    "no-extra-semi": "error",
+    "@typescript-eslint/no-namespace": [2, {"allowDeclarations": true}]
+  }
+}
