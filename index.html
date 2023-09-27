@@ -7,13 +7,26 @@
     <title>Cyantype Editor</title>
 </head>
 <body>
-  <header>This is a testing scaffold for cyantype-editor</header>
+  <header style="display:flex;gap:var(--cn-base-grid)">
+    <p>This is a testing scaffold for cyantype-editor</p>
+    <p><input type="checkbox" id="disableArea">Disabled</checkbox></p>
+  </header>
   <main>
     <cyantype-editor
+      id="tester"
       value="Initial value"
     ></cyantype-editor>
   </main>
     <!-- Link the external JavaScript file -->
     <script type="module" src="/lib/main.ts"></script> 
+
+
+  <script>
+    const tester = document.getElementById('tester');
+    const disableArea = document.getElementById('disableArea');
+    disableArea.addEventListener('change', (e) => {
+      tester.disabled = disableArea.checked;
+    });
+  </script>
 </body>
 </html>
