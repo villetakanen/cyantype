@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="testing_scaffold.css">
+    <!-- load https://www.unpkg.com/marked@9.0.3/lib/marked.umd.js -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <title>Cyantype Editor</title>
 </head>
 <body>
@@ -16,6 +18,7 @@
       id="tester"
       value="Initial value"
     ></cyantype-editor>
+    <div id="results" />
   </main>
     <!-- Link the external JavaScript file -->
     <script type="module" src="/lib/main.ts"></script> 
@@ -27,6 +30,12 @@
     disableArea.addEventListener('change', (e) => {
       tester.disabled = disableArea.checked;
     });
-  </script>
-</body>
+
+// On change, fill in the results with the current value converted to HTML
+tester.addEventListener('input', (e) => {
+  const results = document.getElementById('results');
+  results.innerHTML = marked.parse(tester.value);
+});
+    </script>
+  </body>
 </html>

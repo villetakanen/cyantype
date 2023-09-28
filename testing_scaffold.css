@@ -7,3 +7,11 @@ main {
   margin: 0 auto;
   height: 75vh;
 }
+
+div#tester {
+  height: 37.5vh;
+}
+
+div#results {
+  height: 37.5vh;
+}
