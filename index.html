@@ -12,10 +12,12 @@
   <header style="display:flex;gap:var(--cn-base-grid)">
     <p>This is a testing scaffold for cyantype-editor</p>
     <p><input type="checkbox" id="disableArea">Disabled</checkbox></p>
+    <p id="selectionRangeInfo"></p>
   </header>
   <main>
     <cyantype-editor
       id="tester"
+      info
       value="Initial value"
     ></cyantype-editor>
     <div id="results" />
@@ -36,6 +38,14 @@ tester.addEventListener('input', (e) => {
   const results = document.getElementById('results');
   results.innerHTML = marked.parse(tester.value);
 });
+
+// On focus, blur, or change, of #tester print out the selection
+//  range to #selectionRangeInfo
+function updateSelectionRangeInfo() {
+  selectionRangeInfo.innerHTML = `Selection range: ${tester.selectionStart} - ${tester.selectionEnd}`;
+}
+tester.addEventListener('selectionchange', updateSelectionRangeInfo);
+
     </script>
   </body>
 </html>

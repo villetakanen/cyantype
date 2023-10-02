@@ -1,6 +1,7 @@
 :root
   --chroma-primary-i-hsl: 65, 100%, 63%
   --cn-base-grid: 24px
+  --cn-gap: calc(var(--cn-base-grid) / 2)
 
 cyantype-editor
   --cn-border: 1px solid #ccc
@@ -12,5 +13,10 @@ cyantype-editor
   --cn-font-size-ui: calc(var(--cn-base-grid) * 0.75)
   --cn-line-height-ui: var(--cn-base-grid)
 
+  // Info field overrides for font size and line height
+  --cn-font-size-info: calc(var(--cn-base-grid) * 0.5)
+  --cn-line-height-info: var(--cn-base-grid)
+
   // Color Scheme
   --cn-background-input: hsla(var(--chroma-primary-i-hsl), 0.11)
+  --cn-background-info: hsla(var(--chroma-primary-i-hsl), 0.22)
