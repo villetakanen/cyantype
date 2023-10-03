@@ -19,6 +19,8 @@ export class CyanTypeEditor extends LitElement {
     selectionEnd = ''
   @property({type: String, reflect: true})
     lineNumber = ''
+  @property({type: Boolean, reflect: true})
+    toolbar = false
 
   static styles = css`
     :host {
@@ -275,8 +277,43 @@ export class CyanTypeEditor extends LitElement {
     this.dispatchEvent(new KeyboardEvent('keyup', {bubbles: true, composed: true, key: e.key}))
   }
 
+  onStyleChange = (e: Event) => {
+    this.boxEvent(e)
+    const name = (e as CustomEvent).detail.name
+    if (!name) return
+
+    // Get the current selection
+    const selection = this.getSelection()
+
+    // Get the current value
+    const value = this.value
+
+    // if bold, add ** before and after
+    if (name === 'bold') {
+      this.value = 
+        value.substring(0, selection.start) +
+        ' **' +
+        value.substring(selection.start, selection.end) +
+        '** ' +
+        value.substring(selection.end)
+    }
+
+    // if italic, add * before and after
+    if (name === 'italic') {
+      this.value = 
+        value.substring(0, selection.start) +
+        ' *' +
+        value.substring(selection.start, selection.end) +
+        '* ' +
+        value.substring(selection.end)
+    }
+  }
+
   render() {
     return html`
+    ${ this.toolbar ? html`<cyantype-editor-toolbar
+      @stylechange=${this.onStyleChange}
+      ></cyantype-editor-toolbar>` : ''}
     <textarea
       @paste="${this.handlePaste}"
       ?disabled=${this.disabled}

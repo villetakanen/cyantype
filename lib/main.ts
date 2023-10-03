@@ -7,3 +7,4 @@ import './styles/variables.sass'
 
 // Components
 export * from './CyanType'
+export * from './components/CyanTypeToolbar'
