@@ -11,6 +11,22 @@ export class CyanTypeEditorToolbar extends LitElement {
       gap: var(--cn-gap);
       height: var(--cn-height-toolbar, var(--cn-grid-unit));
     }
+    :host > button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      height: var(--cn-height-toolbar, var(--cn-grid-unit));
+      width: var(--cn-height-toolbar, var(--cn-grid-unit));
+      padding: 0;
+      margin: 0;
+    }
+    :host > button:hover {
+      background: var(--cn-background-toolbar-hover);
+    }
+    :host > img {
+      height: var(--cn-height-toolbar, var(--cn-grid-unit));
+      width: var(--cn-height-toolbar, var(--cn-grid-unit));
+    }
   `
 
   dispatchButtonEvent(name: string) {
@@ -20,9 +36,7 @@ export class CyanTypeEditorToolbar extends LitElement {
   renderButton(name: string, icon: string) {
     return html`
         <button name="${name}" @click=${() => this.dispatchButtonEvent(name)}>
-            <svg viewBox="0 0 24 24" width="24" height="24">
-                <path d="${icon}"></path>
-            </svg>
+            <img src="${icon}" alt="${name}">
         </button>
     `;
   }
@@ -32,9 +46,10 @@ export class CyanTypeEditorToolbar extends LitElement {
     return html`
       <button>Heading</button>
       <div style="flex-grow: 1"></div>
-      ${ this.renderButton('italic', 'italic.svg') }
-      ${ this.renderButton('bold', 'bold.svg') }
+      ${ this.renderButton('italic', './../italic.svg') }
+      ${ this.renderButton('bold', './../bold.svg') }
       ${ this.renderButton('link', 'link.svg') }
+      <slot name="custom"></slot>
     `
   }
 }

@@ -1,9 +1,17 @@
 {
   "name": "cyantype",
   "version": "1.0.0-alpha.1",
-  "description": "A simple lit element, that provides a 'textarea' that supports Markdown copy-paste",
-  "main": "lib/main.js",
+  "description": "A Lit element, that provides a 'textarea' that supports Markdown copy-paste",
   "type": "module",
+  "main": "./dist/cyan-type.umd.cjs",
+  "module": "./dist/cyan-type.js",
+  "types": "./dist/lib/main.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/cyan-type.js",
+      "require": "./dist/cyan-type.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite dev --port 4321",
     "build": "vite build",
@@ -15,6 +23,9 @@
     "markdown",
     "textarea",
     "copy-paste"
+  ],
+  "files": [
+    "dist"
   ],
   "author": "Ville Takanen",
   "license": "MIT",

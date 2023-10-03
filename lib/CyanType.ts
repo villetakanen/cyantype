@@ -227,7 +227,11 @@ export class CyanTypeEditor extends LitElement {
     return html`
     ${ this.toolbar ? html`<cyantype-editor-toolbar
       @stylechange=${this.onStyleChange}
-      ></cyantype-editor-toolbar>` : ''}
+      >
+      <div slot="custom">
+        <slot name="actions"></slot>
+      </div>
+    </cyantype-editor-toolbar>` : ''}
     <textarea
       @paste="${this.handlePaste}"
       ?disabled=${this.disabled}
