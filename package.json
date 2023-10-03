@@ -18,6 +18,7 @@
   "author": "Ville Takanen",
   "license": "MIT",
   "devDependencies": {
+    "@types/turndown": "^5.0.2",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
     "eslint": "^8.49.0",
@@ -31,6 +32,7 @@
     "vitest": "^0.34.4"
   },
   "dependencies": {
-    "lit": "^2.8.0"
+    "lit": "^2.8.0",
+    "turndown": "^7.1.2"
   }
 }

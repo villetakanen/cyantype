@@ -1,7 +1,7 @@
 import {LitElement, html, css} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import { logDebug } from './logger';
-// import { logDebug } from './logger';
+import TurndownService from 'turndown'
 
 @customElement('cyantype-editor')
 export class CyanTypeEditor extends LitElement {
@@ -113,12 +113,107 @@ export class CyanTypeEditor extends LitElement {
     `
   }
 
+  renderMarkdowBlock () {
+    if (!this.info) return html``
+
+    // We want to show the current block of markdown at the cursor
+    // So we need to get the current line and see how it starts
+
+    const markdown = this.value
+
+    // Get the current line
+    const lines = markdown.split('\n')
+    const lineNumber = parseInt(this.lineNumber) - 1 
+    const line = lines.length > 0 ? lines[lineNumber] : ''
+
+    if(!line) return html``
+
+    let markdownNotation = ''
+    let hmtlElement = ''
+
+    // Check if it is a header (starts with 1 to 6 #'s followed by a space)
+    if (line.startsWith('#')) {
+      if (line.startsWith('###### ')) markdownNotation = '######'
+      if (line.startsWith('##### ')) markdownNotation = '#####'
+      if (line.startsWith('#### ')) markdownNotation = '####'
+      if (line.startsWith('### ')) markdownNotation = '###'
+      if (line.startsWith('## ')) markdownNotation = '##'
+      if (line.startsWith('# ')) markdownNotation = '#'
+      if (markdownNotation) hmtlElement = 'h' + markdownNotation.length
+    }
+            
+    if (!markdownNotation) return html``
+
+    return html`<div>${markdownNotation}: ${hmtlElement}</div>`
+  }
+
+  getSelection () {
+    const start = Number.parseInt(this.selectionStart)
+    const selectionEndAsInt = Number.parseInt(this.selectionEnd)
+    const end = selectionEndAsInt > start ? selectionEndAsInt : start
+
+    return { start, end}
+  }
+
+  handlePaste (e: ClipboardEvent) {
+    this.boxEvent(e)
+   
+    // Get the current selection
+    const selection = this.getSelection()
+    let len = 0
+   
+    // If it's HTML, we need to convert it to markdown
+    const html = e.clipboardData?.getData('text/html')
+    if (html) {
+      // Convert it to markdown using Turndown
+      const turndownService = new TurndownService()
+      const markdown = turndownService.turndown(html)
+
+      // Insert the markdown at the current cursor position
+      const selection = this.getSelection()
+      this.value = 
+        this.value.substring(0, selection.start) +
+        markdown +
+        this.value.substring(selection.end)
+
+      // Fix caret position to start + markdown.length
+      const textarea = this.shadowRoot?.querySelector('textarea')
+      if (!textarea) return // Should not happen
+      textarea.selectionStart = selection.start
+      textarea.selectionEnd = selection.start + markdown.length
+      
+      len = markdown.length
+    } 
+    else {
+      // Insert the text at the current cursor position
+      const text = e.clipboardData?.getData('text/plain') || ''
+
+      if (!text) {
+        logDebug('No text or html in clipboard, nothing to paste')
+        return
+      }
+
+      // Insert the text at the current cursor position
+      this.value = 
+      this.value.substring(0, selection.start) +
+      text +
+      this.value.substring(selection.end) 
+      len = text.length
+    }
+
+    // Fix caret position to start + content length
+    const textarea = this.shadowRoot?.querySelector('textarea')
+    if (!textarea) return // Should not happen
+    (textarea as HTMLTextAreaElement).setSelectionRange(selection.start, selection.start + len)
+  }
+
 
   renderInfo () {
     if (!this.info) return html``
     return html`
     <div class="info">
       <div>i</div>
+      ${this.renderMarkdowBlock()}
       ${this.renderLineNumber()}
       ${this.renderSelection()}
     </div>
@@ -153,7 +248,7 @@ export class CyanTypeEditor extends LitElement {
     const textarea = this.shadowRoot?.querySelector('textarea')
     if (!textarea) return // Should not happen
 
-    this.lineNumber = textarea.value.substr(0, textarea.selectionStart).split("\n").length.toString()
+    this.lineNumber = textarea.value.substring(0, textarea.selectionStart).split("\n").length.toString()
   }
 
   connectedCallback(): void {
@@ -183,6 +278,7 @@ export class CyanTypeEditor extends LitElement {
   render() {
     return html`
     <textarea
+      @paste="${this.handlePaste}"
       ?disabled=${this.disabled}
       placeholder="${this.placeholder}" 
       @input="${this.onInput}"
