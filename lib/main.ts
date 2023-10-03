@@ -8,3 +8,4 @@ import './styles/variables.sass'
 // Components
 export * from './CyanType'
 export * from './components/CyanTypeToolbar'
+export * from './components/CyanTypeInfobar'

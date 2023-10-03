@@ -1,7 +1,6 @@
 import {LitElement, html, css} from 'lit';
 import {customElement} from 'lit/decorators.js';
 
-
 @customElement('cyantype-editor-toolbar')
 export class CyanTypeEditorToolbar extends LitElement {
   static styles = css`
