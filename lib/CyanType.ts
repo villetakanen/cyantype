@@ -27,7 +27,7 @@ export class CyanTypeEditor extends LitElement {
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
-      border: var(--cn-border, none);
+      border: var(--cn-border, var(--color-gray-1, #000) solid var(--cn-border-width, 1px));
       margin: 0;
       padding: 0; 
       height: 100%;
@@ -39,7 +39,7 @@ export class CyanTypeEditor extends LitElement {
       padding: var(--cn-padding, 0);
       margin: 0;
       box-sizing: border-box;
-      background: var(--cn-background-input);
+      background: var(--cn-background-input, var(--color-yellow-1, #fff));
       font-family: var(--cn-font-family-ui);
       font-size: var(--cn-font-size-ui);
       outline: none;

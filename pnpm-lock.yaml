@@ -9,6 +9,7 @@ specifiers:
   eslint-plugin-lit-a11y: ^1.1.0-next.1
   eslint-plugin-wc: ^1.3.2
   lit: ^2.8.0
+  reasonable-colors: ^0.4.0
   sass: ^1.68.0
   turndown: ^7.1.2
   typescript: ^5.2.2
@@ -18,6 +19,7 @@ specifiers:
 
 dependencies:
   lit: 2.8.0
+  reasonable-colors: 0.4.0
   turndown: 7.1.2
 
 devDependencies:
@@ -1803,6 +1805,10 @@ packages:
     dependencies:
       picomatch: 2.3.1
     dev: true
+
+  /reasonable-colors/0.4.0:
+    resolution: {integrity: sha512-KrHgNvKPNC/YDUOsYcFxZsK2VFc234e8NcI57BTSv9WxAOtC+gCFpgy62oVdEYoYFoD1mwlGca8EsX59wGb1DQ==}
+    dev: false
 
   /regenerator-runtime/0.14.0:
     resolution: {integrity: sha512-srw17NI0TUWHuGa5CFGGmhfNIeja30WMBfbslPNhf6JrqQlLN5gcrvig1oqPxiVaXb0oW0XRKtH6Nngs5lKCIA==}

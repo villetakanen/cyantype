@@ -4,6 +4,7 @@
 
 // Style variables used in components
 import './styles/variables.sass'
+import 'reasonable-colors/reasonable-colors.css'
 
 // Components
 export * from './CyanType'

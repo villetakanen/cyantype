@@ -5,11 +5,12 @@ import {customElement} from 'lit/decorators.js';
 export class CyanTypeEditorToolbar extends LitElement {
   static styles = css`
     :host {
-      background: var(--cn-background-toolbar);
+      background: var(--cn-background-legend, var(--color-yellow-2, #fff));
       display: flex;
       flex-direction: row;
       gap: var(--cn-gap);
       height: var(--cn-height-toolbar, var(--cn-grid-unit));
+      padding: 0 var(--cn-gap);
     }
     :host > button {
       background: none;
@@ -48,8 +49,8 @@ export class CyanTypeEditorToolbar extends LitElement {
       <div style="flex-grow: 1"></div>
       ${ this.renderButton('italic', './../italic.svg') }
       ${ this.renderButton('bold', './../bold.svg') }
-      ${ this.renderButton('link', 'link.svg') }
       <slot name="custom"></slot>
     `
+    // ${ this.renderButton('link', 'link.svg') }
   }
 }

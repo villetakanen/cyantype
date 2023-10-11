@@ -3,16 +3,13 @@
   "version": "1.0.0-alpha.3",
   "description": "A Lit element, that provides a 'textarea' that supports Markdown copy-paste",
   "type": "module",
-  "main": "./dist/cyan-type.umd.cjs",
   "module": "./dist/cyan-type.js",
   "types": "./dist/lib/main.d.ts",
   "exports": {
-    ".": {
-      "import": "./dist/cyan-type.js",
-      "require": "./dist/cyan-type.umd.cjs"
-    },
-    "./style.css": "./dist/style.css",
-    "./index.d.ts": "./dist/lib/main.d.ts"
+    "import": "./dist/cyan-type.js",
+    "require": "./dist/cyan-type.umd.cjs",
+    "style": "./dist/style.css",
+    "types": "./dist/lib/main.d.ts"
   },
   "scripts": {
     "dev": "vite dev --port 4321",
@@ -48,6 +45,7 @@
   },
   "dependencies": {
     "lit": "^2.8.0",
+    "reasonable-colors": "^0.4.0",
     "turndown": "^7.1.2"
   }
 }

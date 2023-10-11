@@ -30,9 +30,20 @@ Early alpha. Not ready for production.
 
 ## Styling
 
-The editor is styled using CSS variables. The following Cyan derived variables are available:
+The package uses Reasonable colors _by default_. These can be overridden as below. <br>
+See https://reasonable.work/colors/ for more info
+
+The editor is styled using CSS variables. The following Cyan derived variables
+are available (defaults shown):
 ```css
 --cn-page-grid: 24px; /* The grid size, used as base line-height. Fefaults to 24px */
+
+/* Input theming */
+--cn-background-input: --color-yellow-1;
+--cn-background-legend: --color-yellow-2;
+
+--cn-background-input-focus: --color-amber-1;
+
 ```
 
 Additionally, the following CSS variables only affecting this componentn are available:

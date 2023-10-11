@@ -5,7 +5,7 @@ import {customElement, property} from 'lit/decorators.js';
 export class CyanTypeEditorInfobar extends LitElement {
   static styles = css`
     :host {
-        background-color: var(--cn-background-info);
+        background: var(--cn-background-legend, var(--color-yellow-2, #fff));
         color: var(--cn-color-info);
         font-size: var(--cn-font-size-info);
         font-family: var(--cn-font-family-info);
