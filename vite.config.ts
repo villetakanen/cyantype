@@ -10,5 +10,6 @@ export default defineConfig({
       fileName: 'cyan-type' // fileName: (format) => `pelilauta_store.${format}.js`
     }
   },
+  assetsInclude: ['public/**/*.svg'],
   plugins: [dts()]
 });
